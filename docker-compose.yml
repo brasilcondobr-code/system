@@ -1,0 +1,106 @@
+# /home/delll/Projects/brasilcondo/laravel/docker-compose.yml
+version: '3.8'
+services:
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.3
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.3/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            ASSET_URL: '${APP_URL:-http://localhost}'
+            VITE_PORT: '${VITE_PORT:-5173}'
+            DB_CONNECTION: pgsql
+            DB_HOST: pgsql
+            DB_PORT: 5432
+            DB_DATABASE: '${DB_DATABASE}'
+            DB_USERNAME: '${DB_USERNAME}'
+            DB_PASSWORD: '${DB_PASSWORD}'
+            REDIS_HOST: redis
+            MEILISEARCH_HOST: meilisearch
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+            - brasilcondo_shared_network # <<<<<< ADICIONADO
+        depends_on:
+            - pgsql
+            - redis
+            - meilisearch
+    pgsql:
+        image: 'postgres:15'
+        ports:
+            - '${DB_PORT:-5432}:5432'
+        environment:
+            PGPASSWORD: '${DB_PASSWORD}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD}'
+        volumes:
+            - 'sail-pgsql:/var/lib/postgresql/data'
+            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
+        networks:
+            - sail
+            - brasilcondo_shared_network # <<<<<< ADICIONADO
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sail-redis:/data'
+        networks:
+            - sail
+            - brasilcondo_shared_network # <<<<<< ADICIONADO
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
+    meilisearch:
+        image: 'getmeili/meilisearch:latest'
+        ports:
+            - '${MEILISEARCH_PORT:-7700}:7700'
+        environment:
+            MEILI_MASTER_KEY: '${MEILISEARCH_MASTER_KEY}'
+            MEILI_HTTP_ADDR: '0.0.0.0:7700'
+        volumes:
+            - 'sail-meilisearch:/meili_data'
+        networks:
+            - sail
+            - brasilcondo_shared_network # <<<<<< ADICIONADO
+        healthcheck:
+            test:
+                - CMD
+                - wget
+                - '--no-verbose'
+                - '--spider'
+                - 'http://localhost:7700/health'
+            retries: 3
+            timeout: 5s
+
+volumes:
+    sail-pgsql:
+        driver: local
+    sail-redis:
+        driver: local
+    sail-meilisearch:
+        driver: local
+
+# SEÇÃO DE REDES COMPARTILHADAS
+networks:
+    sail:
+        driver: bridge
+    brasilcondo_shared_network: # <<<<<< REDE EXTERNA
+        external: true
+
+

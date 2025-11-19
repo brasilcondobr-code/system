@@ -13,8 +13,12 @@
         <!-- Styles -->
         @Vite(['resources/scss/app.scss'])
     </head>
-    <body> 
+    <body>
+        <div id="app">
+            
+        </div>
 
+        <!-- Scripts -->
         @Vite(['resources/js/app.js'])
     </body>
 </html>

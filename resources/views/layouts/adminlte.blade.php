@@ -5,16 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Brasil Condo | @yield('title', 'Dashboard')</title>
 
-        {{-- 2. ESSENCIAL: Font Awesome (Ícones) --}}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
         {{-- 1. Carrega CSS (Bootstrap e AdminLTE) via Vite --}}
         @vite([
             'resources/scss/app.scss',
             'node_modules/admin-lte/dist/css/adminlte.min.css',
         ])
         
-        {{-- 2. ESSENCIAL: Font Awesome (Ícones) --}}
+        {{-- 2. ESSENCIAL: Font Awesome para os ícones --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         
         @yield('styles')
@@ -49,7 +46,7 @@
             @include('layouts.partials.footer')
         </div>
 
-        {{-- 1. ESSENCIAL: JQuery (DEVE vir antes do @vite) --}}
+        {{-- 1. ESSENCIAL: JQuery (Carregado antes do @vite) --}}
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
         {{-- 2. Carrega Scripts (app.js e adminlte.min.js) via Vite --}}

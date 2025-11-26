@@ -10,9 +10,6 @@ export default defineConfig({
                 // Seu JS principal (agora com a inicialização do Bootstrap/Popper)
                 'resources/js/app.js',
                 
-                // === NOVO: Adiciona o CSS e JS do AdminLTE para compilação ===
-                'node_modules/admin-lte/dist/css/adminlte.min.css',
-                'node_modules/admin-lte/dist/js/adminlte.min.js',
             ],
             refresh: true,
         }),

@@ -24,6 +24,10 @@ class UsersTable
                 TextColumn::make('email')
                     ->label('E-mail')
                     ->searchable(),
+                TextColumn::make('userType.description')
+                    ->label('Tipo de usuário')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('email_verified_at')
                     ->label('E-mail verificado em')
                     ->dateTime()

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -25,6 +26,12 @@ class UserForm
                     ->label('Senha')
                     ->password()
                     ->required(),
+                Select::make('user_type_id')
+                    ->label('Tipo de usuário')
+                    ->relationship('userType', 'description')
+                    ->searchable()
+                    ->preload()
+                    ->nullable(),
             ]);
     }
 }

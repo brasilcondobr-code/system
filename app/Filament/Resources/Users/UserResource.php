@@ -21,7 +21,14 @@ class UserResource extends Resource
     // Use the user's name when Filament needs a record title (e.g. delete modal headings)
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $navigationLabel = 'Usuários';
+
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Usuários';
+    }
 
     public static function form(Schema $schema): Schema
     {

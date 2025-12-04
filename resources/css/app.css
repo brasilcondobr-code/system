@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide the fi-logo brand name text on the login page */
+.fi-simple-main .fi-logo {
+    display: none !important;
+}
+
+/* Hide the brand name text in the topbar/sidebar header */
+.fi-topbar-start .fi-logo,
+.fi-sidebar-header .fi-logo {
+    font-size: 0 !important;
+    color: transparent !important;
+}

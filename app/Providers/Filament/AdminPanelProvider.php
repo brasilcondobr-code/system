@@ -63,6 +63,16 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(PanelsRenderHook::SIDEBAR_NAV_START, fn () => view('layouts.user-avatar'))
             // Render a fullscreen toggle button in the topbar, before the global search
             // This injects the button directly in the topbar-end container, left of the search input.
-            ->renderHook(PanelsRenderHook::GLOBAL_SEARCH_BEFORE, fn () => view('layouts.topbar-fullscreen-toggle'));
+            ->renderHook(PanelsRenderHook::GLOBAL_SEARCH_BEFORE, fn () => view('layouts.topbar-fullscreen-toggle'))
+            // Replace the brand name with the company logo in the topbar/header
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_LOGO_BEFORE,
+                fn (): string => '<img src="' . asset('images/LogotipoFinalMod1_002.png') . '" alt="Brasil Condo" style="height: 40px; width: auto;">'
+            )
+            // Replace the brand name with the company logo on the login page
+            ->renderHook(
+                PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
+                fn (): string => '<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;"><img src="' . asset('images/LogotipoFinalMod1_002.png') . '" alt="Brasil Condo" style="width: 200px; height: auto;"></div>'
+            );
     }
 }

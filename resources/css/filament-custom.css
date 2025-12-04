@@ -1,0 +1,12 @@
+/* Hide the brand name text on the login page */
+.fi-simple-main .fi-logo:last-of-type {
+    display: none !important;
+}
+
+/* Ensure custom logo image is centered and properly sized */
+.fi-simple-main .fi-logo img {
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}

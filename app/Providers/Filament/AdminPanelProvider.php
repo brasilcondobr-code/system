@@ -60,6 +60,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             // Render the logged-in user's circular avatar in the sidebar above nav
             // Render the avatar partial from our application's views directory.
-            ->renderHook(PanelsRenderHook::SIDEBAR_NAV_START, fn () => view('layouts.user-avatar'));
+            ->renderHook(PanelsRenderHook::SIDEBAR_NAV_START, fn () => view('layouts.user-avatar'))
+            // Render a fullscreen toggle button in the topbar, before the global search
+            // This injects the button directly in the topbar-end container, left of the search input.
+            ->renderHook(PanelsRenderHook::GLOBAL_SEARCH_BEFORE, fn () => view('layouts.topbar-fullscreen-toggle'));
     }
 }

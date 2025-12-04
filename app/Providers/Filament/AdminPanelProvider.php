@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Brasil Condo')
             ->colors([
                 'primary' => Color::Amber,
             ])

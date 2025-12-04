@@ -1,0 +1,25 @@
+
+##  Iniciar o Projeto
+    $ cd /Projects/brasilcondo/laravel
+    $ ./vendor/bin/sail up -d
+
+
+##  Limpar cache do laravel
+    $ ./vendor/bin/sail artisan optimize:clear
+
+
+##  Iniciar o SERVIDOR de DESENVOLVIMENTO do laravel
+    $ ./vendor/bin/sail npm run dev
+
+
+##  Acesso pelo Navegador
+    URL:        http://localhost/login
+    Email:      brasilcondo.br@gmail.com
+    Senha:      qwerty2099
+
+
+##  Acessar o Log do Laravel
+    $ ./vendor/bin/sail shell
+    $ tail -f storage/logs/laravel.log
+
+

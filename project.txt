@@ -13,9 +13,9 @@
 
 
 ##  Acesso pelo Navegador
-    URL:        http://localhost/login
-    Email:      brasilcondo.br@gmail.com
-    Senha:      qwerty2099
+    URL:                http://localhost/admin/login
+    Usuário/Email:      brasilcondo.br@gmail.com
+    Senha:              qwerty2099
 
 
 ##  Acessar o Log do Laravel

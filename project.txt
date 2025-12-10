@@ -23,3 +23,18 @@
     $ tail -f storage/logs/laravel.log
 
 
+##  Backup do Projeto  (brasilcondo)
+    $ cd ~/Projects/brasilcondo
+    $ ./vendor/bin/sail up -d
+    $ ./backup_laravel.sh
+    $ ./vendor/bin/sail down
+    $ ./vendor/bin/sail artisan optimize:clear
+    $ ./vendor/bin/sail npm run dev
+
+
+##  Restauração do Projeto (brasilcondo)
+    $ cd ~/Projects/brasilcondo
+    $ ./vendor/bin/sail up -d
+    $ ./restore_laravel.sh    
+    $ ./vendor/bin/sail artisan optimize:clear
+    $ ./vendor/bin/sail npm run dev
